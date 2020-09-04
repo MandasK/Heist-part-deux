@@ -166,7 +166,24 @@ namespace HeistApp
             }
             foreach (IRobber athief in crew)
             {
-                athief.RolodexReport();
+                athief.PerformSkill(aBank);
+            }
+            aBank.IsSecure();
+
+            if (aBank.AlarmScore > 0 && aBank.VaultScore > 0 && aBank.SecurityGuardScore > 0)
+            {
+                Console.WriteLine("You failed. You didn't get the money, and you're in jail.");
+            }
+            else
+            {
+                Console.WriteLine("Success! We did it! We're rich!");
+                int successTake = aBank.CashOnHand / 100;
+                foreach (IRobber thief in crew)
+                {
+                    int thiefProfit = successTake * thief.PercentageCut;
+                    Console.WriteLine($"{thief.Name} gets ${thiefProfit}");
+                }
+
             }
         }
     }

@@ -9,12 +9,16 @@ namespace HeistApp
         public int VaultScore { get; set; }
         public int SecurityGuardScore { get; set; }
 
-        public bool IsSecure
+        public bool IsSecure()
 
         {
-            get
+            if (SecurityGuardScore <= 0 && VaultScore <= 0 && AlarmScore <= 0)
             {
-                return SecurityGuardScore < 1 && VaultScore < 1 && AlarmScore < 1;
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
