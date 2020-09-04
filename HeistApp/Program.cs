@@ -7,6 +7,10 @@ namespace HeistApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Bank Heist");
+            Console.WriteLine("-----------------");
+
+            bool membercheck = true;
             Hacker haxxor = new Hacker()
             {
                 Name = "Andy",
@@ -53,9 +57,57 @@ namespace HeistApp
                 braun,
                 braun2
             };
+            Console.WriteLine($"You currently have {rolodex.Count} people in your rolodex of thieves");
+            Console.WriteLine("Add more thieves if you have them");
 
-            Console.WriteLine("Bank Heist");
-            Console.WriteLine("-----------------");
+            while (membercheck)
+            {
+                Console.Write("What's the Name of the Thief? ");
+                string Name = Console.ReadLine();
+                if (Name == "")
+                {
+                    membercheck = false;
+                }
+                else
+                {
+                    Console.WriteLine("Choose a Specialty(Number):");
+                    Console.WriteLine("1. Hacker(Disables Alarms)\n2. LockSpecialist(Cracks Vault)\n3. Muscle(Disarms Guards)\n");
+                    string specialty = Console.ReadLine();
+                    switch (specialty)
+                    {
+                        case "1":
+                            Hacker aHacker = new Hacker();
+                            aHacker.Name = Name;
+                            Console.Write("What would you say this hacker's skill level is (1-100)? ");
+                            aHacker.SkillLevel = int.Parse(Console.ReadLine());
+                            Console.Write("What's their take of the money(1-100)? ");
+                            aHacker.PercentageCut = int.Parse(Console.ReadLine());
+                            rolodex.Add(aHacker);
+                            break;
+
+                        case "2":
+                            LockSpecialist aLockSpecialist = new LockSpecialist();
+                            aLockSpecialist.Name = Name;
+                            Console.Write("What would you say this lock specialist's skill level is (1-100)? ");
+                            aLockSpecialist.SkillLevel = int.Parse(Console.ReadLine());
+                            Console.Write("What's their take of the money(1-100)? ");
+                            aLockSpecialist.PercentageCut = int.Parse(Console.ReadLine());
+                            rolodex.Add(aLockSpecialist);
+                            break;
+
+                        case "3":
+                            Muscle aMuscle = new Muscle();
+                            aMuscle.Name = Name;
+                            Console.Write("What would you say this Muscle's skill level is (1-100)? ");
+                            aMuscle.SkillLevel = int.Parse(Console.ReadLine());
+                            Console.Write("What's their take of the money(1-100)? ");
+                            aMuscle.PercentageCut = int.Parse(Console.ReadLine());
+                            rolodex.Add(aMuscle);
+                            break;
+                    }
+                }
+            }
+
             Console.WriteLine("Team Member Options");
             rolodex.ForEach(robber => Console.WriteLine($"{robber.Name} has skill level {robber.SkillLevel} and gets {robber.PercentageCut}% of the take."));
         }
