@@ -19,5 +19,9 @@ namespace HeistApp
                 Console.WriteLine($"{Name} has disabled the security guard!");
             }
         }
+        public void RolodexReport()
+        {
+            Console.WriteLine($"{Name}: Muscle, Skill Level: {SkillLevel}, Take: {PercentageCut}%");
+        }
     }
 }

@@ -18,6 +18,10 @@ namespace HeistApp
                 Console.WriteLine($"{Name} has unlocked the vault!");
             }
         }
+        public void RolodexReport()
+        {
+            Console.WriteLine($"{Name}: Lock Specialist, Skill Level: {SkillLevel}, Take: {PercentageCut}%");
+        }
     }
 
 }

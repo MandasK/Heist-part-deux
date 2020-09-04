@@ -1,3 +1,5 @@
+using System;
+
 namespace HeistApp
 {
     public class Bank
@@ -16,5 +18,33 @@ namespace HeistApp
             }
         }
 
+        public void ReconReport()
+        {
+            if (AlarmScore > VaultScore && AlarmScore > SecurityGuardScore)
+            {
+                Console.WriteLine("Most secure: Alarm");
+            }
+            else if (VaultScore > AlarmScore && VaultScore > SecurityGuardScore)
+            {
+                Console.WriteLine("Most secure: Vault");
+            }
+            else
+            {
+                Console.WriteLine("Most secure: Security");
+            }
+
+            if (AlarmScore < VaultScore && AlarmScore < SecurityGuardScore)
+            {
+                Console.WriteLine("Least secure: Alarm");
+            }
+            else if (VaultScore < AlarmScore && VaultScore < SecurityGuardScore)
+            {
+                Console.WriteLine("Least secure: Vault");
+            }
+            else
+            {
+                Console.WriteLine("Least secure: Security");
+            }
+        }
     }
 }

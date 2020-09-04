@@ -108,6 +108,13 @@ namespace HeistApp
                 }
             }
 
+            Bank aBank = new Bank();
+            aBank.CashOnHand = new Random().Next(50000, 1000000);
+            aBank.AlarmScore = new Random().Next(0, 101);
+            aBank.VaultScore = new Random().Next(0, 101);
+            aBank.SecurityGuardScore = new Random().Next(0, 101);
+            aBank.ReconReport();
+
             Console.WriteLine("Team Member Options");
             rolodex.ForEach(robber => Console.WriteLine($"{robber.Name} has skill level {robber.SkillLevel} and gets {robber.PercentageCut}% of the take."));
         }

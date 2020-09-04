@@ -19,5 +19,10 @@ namespace HeistApp
                 Console.WriteLine($"{Name} has disabled the alarm system!");
             }
         }
+
+        public void RolodexReport()
+        {
+            Console.WriteLine($"{Name}: Hacker, Skill Level: {SkillLevel}, Take: {PercentageCut}%");
+        }
     }
 }
