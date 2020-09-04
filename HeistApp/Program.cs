@@ -12,6 +12,7 @@ namespace HeistApp
 
             bool membercheck = true;
             bool crewcheck = true;
+            int totaltake = 100;
             Hacker haxxor = new Hacker()
             {
                 Name = "Andy",
@@ -121,12 +122,12 @@ namespace HeistApp
 
             Console.WriteLine("Team Member Options");
             Console.WriteLine();
-            int num = 0;
+
             foreach (IRobber thief in rolodex)
             {
+                int num = rolodex.IndexOf(thief);
                 Console.Write($"{num}  ");
                 thief.RolodexReport();
-                num++;
             }
             Console.WriteLine("--------------------");
             Console.WriteLine("Time to pick ");
@@ -142,6 +143,24 @@ namespace HeistApp
                 {
                     int aMemNum = int.Parse(amember);
                     crew.Add(rolodex[aMemNum]);
+                    totaltake = totaltake - rolodex[aMemNum].PercentageCut;
+                    Console.WriteLine($"{totaltake}");
+                    rolodex.RemoveAt(aMemNum);
+                    foreach (IRobber thief in rolodex)
+                    {
+                        if (thief.PercentageCut >= 0)
+                        {
+                            int num = rolodex.IndexOf(thief);
+                            Console.Write($"{num}  ");
+                            thief.RolodexReport();
+                        }
+                        else
+                        {
+                            int num = rolodex.IndexOf(thief);
+                            Console.WriteLine("The Percentage is too high. We can't add this thief.");
+                        }
+                    }
+
                 }
 
             }
