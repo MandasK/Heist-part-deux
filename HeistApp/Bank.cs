@@ -19,7 +19,10 @@ namespace HeistApp
         }
 
         public void ReconReport()
+
         {
+            Console.WriteLine("Bank Report");
+            Console.WriteLine();
             if (AlarmScore > VaultScore && AlarmScore > SecurityGuardScore)
             {
                 Console.WriteLine("Most secure: Alarm");
@@ -45,6 +48,7 @@ namespace HeistApp
             {
                 Console.WriteLine("Least secure: Security");
             }
+            Console.WriteLine("--------------------");
         }
     }
 }

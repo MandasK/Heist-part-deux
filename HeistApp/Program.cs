@@ -11,6 +11,7 @@ namespace HeistApp
             Console.WriteLine("-----------------");
 
             bool membercheck = true;
+            bool crewcheck = true;
             Hacker haxxor = new Hacker()
             {
                 Name = "Andy",
@@ -57,6 +58,9 @@ namespace HeistApp
                 braun,
                 braun2
             };
+
+            List<IRobber> crew = new List<IRobber>();
+
             Console.WriteLine($"You currently have {rolodex.Count} people in your rolodex of thieves");
             Console.WriteLine("Add more thieves if you have them");
 
@@ -116,7 +120,35 @@ namespace HeistApp
             aBank.ReconReport();
 
             Console.WriteLine("Team Member Options");
-            rolodex.ForEach(robber => Console.WriteLine($"{robber.Name} has skill level {robber.SkillLevel} and gets {robber.PercentageCut}% of the take."));
+            Console.WriteLine();
+            int num = 0;
+            foreach (IRobber thief in rolodex)
+            {
+                Console.Write($"{num}  ");
+                thief.RolodexReport();
+                num++;
+            }
+            Console.WriteLine("--------------------");
+            Console.WriteLine("Time to pick ");
+            while (crewcheck)
+            {
+                Console.Write("Who do you want to join your crew?");
+                string amember = Console.ReadLine();
+                if (amember == "")
+                {
+                    crewcheck = false;
+                }
+                else
+                {
+                    int aMemNum = int.Parse(amember);
+                    crew.Add(rolodex[aMemNum]);
+                }
+
+            }
+            foreach (IRobber athief in crew)
+            {
+                athief.RolodexReport();
+            }
         }
     }
 }
